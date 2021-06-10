@@ -15,12 +15,12 @@ checkDivideByTwo(){
 }
 
 checkDivideByThree(){
-    num=$maxValue
-    while [[ $num -gt 0 ]]
+    local maxValue=$maxValue
+    while [[ $maxValue -gt 0 ]]
     do
-            let temp=$num%10
+            let temp=$maxValue%10
             let sum=$sum+$temp
-            let num=$num/10
+            let maxValue=$maxValue/10
     done
 
     if [ $((sum%3)) -eq 0 ] 
@@ -81,5 +81,6 @@ checkDivideBySix(){
     fi
 }
 
-checkDivideByThree
+checkDivideBySix
 echo $?
+echo $maxValue
