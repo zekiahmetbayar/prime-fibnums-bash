@@ -104,5 +104,52 @@ checkDivideByEight(){
     fi
 }
 
-checkDivideByEight
+
+checkDivideByNine(){
+    local maxValue=$maxValue
+    while [[ $maxValue -gt 0 ]]
+    do
+            let temp=$maxValue%10
+            let sum=$sum+$temp
+            let maxValue=$maxValue/10
+    done
+
+    if [ $((sum%9)) -eq 0 ] 
+    then
+        return 1
+    else
+        return 0
+    fi
+
+}
+
+checkDivideByTen(){
+    lastDigit=${maxValue: -1}
+    if [ $lastDigit -eq 0 ] 
+    then
+        return 1
+    else
+        return 0
+    fi
+}
+
+#checkDivideByEleven(){
+    # Will be add
+#}
+
+checkDivideByTwelve(){
+    checkDivideByThree
+    local isDivisibleByThree=$?
+
+    checkDivideByFour
+    local isDivisibleByFour=$?
+    
+    if [ $isDivisibleByThree -eq 1 ] && [ $isDivisibleByFour -eq 1 ];then
+        return 1
+    else
+        return 0
+    fi
+}
+
+checkDivideByTwelve
 echo $?
