@@ -34,9 +34,9 @@ checkDivideByThree(){
 checkDivideByFour(){
     numberOfDigits="${#maxValue}"
     
-    if [ "$numberOfDigits" -gt "2" ]; then
+    if [ "$numberOfDigits" -ge "2" ]; then
         lastTwoDigit=${maxValue: -2}
-        if [ $lastTwoDigit -eq "00" ] | [ $((lastTwoDigit%4)) -eq 0 ];then
+        if [ $lastTwoDigit -eq "00" ] || [ $((lastTwoDigit%4)) -eq 0 ];then
             return 1
         else
             return 0
@@ -81,6 +81,28 @@ checkDivideBySix(){
     fi
 }
 
-checkDivideBySix
+#checkDivideBySeven(){
+    # Will be add
+#}
+
+checkDivideByEight(){
+    numberOfDigits="${#maxValue}"
+    
+    if [ "$numberOfDigits" -ge "3" ]; then
+        lastThreeDigit=${maxValue: -3}
+        if [ $lastThreeDigit -eq "000" ] || [ $((lastThreeDigit%8)) -eq 0 ];then
+            return 1
+        else
+            return 0
+        fi
+    else
+        if [ $((maxValue%8)) -eq 0 ];then
+            return 1
+        else
+            return 0
+        fi
+    fi
+}
+
+checkDivideByEight
 echo $?
-echo $maxValue
