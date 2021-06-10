@@ -120,7 +120,6 @@ checkDivideByNine(){
     else
         return 0
     fi
-
 }
 
 checkDivideByTen(){
@@ -151,5 +150,49 @@ checkDivideByTwelve(){
     fi
 }
 
-checkDivideByTwelve
+#checkDivideByThirteen(){
+    # Will be add
+#}
+
+checkDivideByFifteen(){
+    checkDivideByThree
+    local isDivisibleByThree=$?
+
+    checkDivideByFive
+    local isDivisibleByFive=$?
+    
+    if [ $isDivisibleByThree -eq 1 ] && [ $isDivisibleByFive -eq 1 ];then
+        return 1
+    else
+        return 0
+    fi
+}
+
+#checkDivideBySeventeen(){
+    # Will be add
+#}
+
+checkDivideByEighteen(){
+    checkDivideByTwo
+    local isDivisibleByTwo=$?
+
+    checkDivideByNine
+    local isDivisibleByNine=$?
+    
+    if [ $isDivisibleByTwo -eq 1 ] && [ $isDivisibleByNine -eq 1 ];then
+        return 1
+    else
+        return 0
+    fi
+}
+
+#checkDivideByNineteen(){
+    # Will be add
+#}
+
+#checkDivideByTwentyThree(){
+    # Will be add
+#}
+
+checkDivideByEighteen
 echo $?
