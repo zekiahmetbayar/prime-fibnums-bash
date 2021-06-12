@@ -1,5 +1,5 @@
 #!/bin/bash
-source ./rules.sh
+source /usr/share/primecontroller/bin/rules.sh
 
 echo "Enter max value : (Max : 4.100.200.300)"
 read maxValue

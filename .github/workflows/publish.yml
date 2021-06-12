@@ -58,7 +58,7 @@ jobs:
             It helps you to check whether the numbers in the Fibonacci sequence up to 4.100.200.300 are prime.
           """ > src/DEBIAN/control
           echo """
-          ./main.sh
+          /usr/share/primecontroller/bin/main.sh
           """ > src/usr/local/bin/primecontroller
         
           find ./src -type f ! -regex '.*?DEBIAN.*' -exec md5sum {} \; > src/DEBIAN/md5sums
