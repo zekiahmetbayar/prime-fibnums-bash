@@ -81,9 +81,41 @@ checkDivideBySix(){
     fi
 }
 
-#checkDivideBySeven(){
-    # Will be add
-#}
+checkDivideBySeven(){
+    local maxValue=$maxValue
+    integerArray=()
+    while [[ $maxValue -gt 0 ]]
+    do
+        let temp=$maxValue%10
+        integerArray=($temp "${integerArray[@]}")
+        let maxValue=$maxValue/10
+    done
+
+    lastElement="${integerArray[-1]}"
+    unset integerArray[-1]
+
+    arrayLength=${#integerArray[@]}
+    multipliedLastElement=$((2*$lastElement))
+
+    multiplyValue=1 
+    loopStart=$(( $arrayLength - 1 ))
+
+    for ((i=$loopStart; i>=0; i--))
+    do
+        element="${integerArray[$i]}"
+        add=$(($element*$multiplyValue))
+        sumOfInteger=$(( $sumOfInteger + $add ))
+        multiplyValue=$((10*$multiplyValue))
+    done
+
+    decreasedNumber=$(($sumOfInteger-$multipliedLastElement))
+
+    if [ $((decreasedNumber%7)) -eq 0 ];then
+        return 1
+    else
+        return 0
+    fi
+}
 
 checkDivideByEight(){
     numberOfDigits="${#maxValue}"
@@ -194,5 +226,5 @@ checkDivideByEighteen(){
     # Will be add
 #}
 
-checkDivideByEighteen
+checkDivideBySeven
 echo $?
