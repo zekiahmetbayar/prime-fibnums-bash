@@ -164,9 +164,46 @@ checkDivideByTen(){
     fi
 }
 
-#checkDivideByEleven(){
-    # Will be add
-#}
+checkDivideByEleven(){
+    local maxValue=$maxValue
+    digitsArray=()
+    while [[ $maxValue -gt 0 ]]
+    do
+        let temp=$maxValue%10
+        digitsArray=($temp "${digitsArray[@]}")
+        let maxValue=$maxValue/10
+    done
+
+    digitsLength=${#digitsArray[@]}
+    sumOfAdd=0
+    sumOfDec=0
+
+    for ((i=0; i<$digitsLength; i++))
+    do
+        if [ $((i%2)) -eq 0 ];then
+            sumOfAdd=$(($sumOfAdd + "${digitsArray[$i]}"))
+        else
+            sumOfDec=$(($sumOfDec + "${digitsArray[$i]}"))
+        fi
+    done
+
+    decreasedNumber=$(($sumOfAdd-$sumOfDec))
+
+    if [ $decreasedNumber -ge 0 ];then
+        if [ $((decreasedNumber%11)) -eq 0 ];then
+            return 1
+        else
+            return 0 
+        fi
+    else
+        decreasedNumber=$(($decreasedNumber+11))
+        if [ $((decreasedNumber%11)) -eq 0 ];then
+            return 1 
+        else
+            return 0 
+        fi
+    fi
+}
 
 checkDivideByTwelve(){
     checkDivideByThree
@@ -182,9 +219,40 @@ checkDivideByTwelve(){
     fi
 }
 
-#checkDivideByThirteen(){
-    # Will be add
-#}
+checkDivideByThirteen(){
+    local maxValue=$maxValue
+    integerArray=()
+    while [[ $maxValue -gt 0 ]]
+    do
+        let temp=$maxValue%10
+        integerArray=($temp "${integerArray[@]}")
+        let maxValue=$maxValue/10
+    done
+
+    secondPart="${integerArray[-1]}"
+    secondPart=$(($secondPart * 4))
+    unset integerArray[-1]
+    arrayLength=${#integerArray[@]}
+
+    multiplyValue=1 
+    loopStart=$(( $arrayLength - 1 ))
+
+    for ((i=$loopStart; i>=0; i--))
+    do
+        element="${integerArray[$i]}"
+        add=$(($element*$multiplyValue))
+        firstPart=$(( $firstPart + $add ))
+        multiplyValue=$((10*$multiplyValue))
+    done
+
+    addedNumber=$(($firstPart + $secondPart))
+
+    if [ $((addedNumber%13)) -eq 0 ];then
+        return 1
+    else
+        return 0
+    fi
+}
 
 checkDivideByFifteen(){
     checkDivideByThree
@@ -200,9 +268,40 @@ checkDivideByFifteen(){
     fi
 }
 
-#checkDivideBySeventeen(){
-    # Will be add
-#}
+checkDivideBySeventeen(){
+    local maxValue=$maxValue
+    integerArray=()
+    while [[ $maxValue -gt 0 ]]
+    do
+        let temp=$maxValue%10
+        integerArray=($temp "${integerArray[@]}")
+        let maxValue=$maxValue/10
+    done
+
+    secondPart="${integerArray[-1]}"
+    secondPart=$(($secondPart * 5))
+    unset integerArray[-1]
+    arrayLength=${#integerArray[@]}
+
+    multiplyValue=1 
+    loopStart=$(( $arrayLength - 1 ))
+
+    for ((i=$loopStart; i>=0; i--))
+    do
+        element="${integerArray[$i]}"
+        add=$(($element*$multiplyValue))
+        firstPart=$(( $firstPart + $add ))
+        multiplyValue=$((10*$multiplyValue))
+    done
+
+    decreasedNumber=$(($firstPart- $secondPart))
+
+    if [ $((decreasedNumber%17)) -eq 0 ];then
+        return 1
+    else
+        return 0
+    fi
+}
 
 checkDivideByEighteen(){
     checkDivideByTwo
@@ -218,13 +317,112 @@ checkDivideByEighteen(){
     fi
 }
 
-#checkDivideByNineteen(){
-    # Will be add
-#}
+checkDivideByNineteen(){
+    local maxValue=$maxValue
+    integerArray=()
+    while [[ $maxValue -gt 0 ]]
+    do
+        let temp=$maxValue%10
+        integerArray=($temp "${integerArray[@]}")
+        let maxValue=$maxValue/10
+    done
 
-#checkDivideByTwentyThree(){
-    # Will be add
-#}
+    secondPart="${integerArray[-1]}"
+    secondPart=$(($secondPart * 2))
+    unset integerArray[-1]
+    arrayLength=${#integerArray[@]}
 
-checkDivideBySeven
+    multiplyValue=1 
+    loopStart=$(( $arrayLength - 1 ))
+
+    for ((i=$loopStart; i>=0; i--))
+    do
+        element="${integerArray[$i]}"
+        add=$(($element*$multiplyValue))
+        firstPart=$(( $firstPart + $add ))
+        multiplyValue=$((10*$multiplyValue))
+    done
+
+    addedNumber=$(($firstPart + $secondPart))
+
+    if [ $((addedNumber%19)) -eq 0 ];then
+        return 1
+    else
+        return 0
+    fi
+}
+
+checkDivideByTwentyThree(){
+    local maxValue=$maxValue
+    integerArray=()
+    while [[ $maxValue -gt 0 ]]
+    do
+        let temp=$maxValue%10
+        integerArray=($temp "${integerArray[@]}")
+        let maxValue=$maxValue/10
+    done
+
+    secondPart="${integerArray[-1]}"
+    secondPart=$(($secondPart * 7))
+    unset integerArray[-1]
+    arrayLength=${#integerArray[@]}
+
+    multiplyValue=1 
+    loopStart=$(( $arrayLength - 1 ))
+
+    for ((i=$loopStart; i>=0; i--))
+    do
+        element="${integerArray[$i]}"
+        add=$(($element*$multiplyValue))
+        firstPart=$(( $firstPart + $add ))
+        multiplyValue=$((10*$multiplyValue))
+    done
+
+    addedNumber=$(($firstPart + $secondPart))
+
+    if [ $((addedNumber%23)) -eq 0 ];then
+        return 1
+    else
+        return 0
+    fi
+}
+
+checkDivideByTwentyFour(){
+    checkDivideByThree
+    local isDivisibleByThree=$?
+
+    checkDivideByEight
+    local isDivisibleByEight=$?
+    
+    if [ $isDivisibleByThree -eq 1 ] && [ $isDivisibleByEight -eq 1 ];then
+        return 1
+    else
+        return 0
+    fi
+}
+
+checkDivideByTwentyFive(){
+    checkDivideByThree
+    local isDivisibleByThree=$?
+
+    checkDivideByEight
+    local isDivisibleByEight=$?
+    
+    if [ $isDivisibleByThree -eq 1 ] && [ $isDivisibleByEight -eq 1 ];then
+        return 1
+    else
+        return 0
+    fi
+}
+
+checkDivideByTwentyFive(){
+    lastTwoDigit=${maxValue: -2}
+    if [ $lastTwoDigit -eq "25" ] || [ $lastTwoDigit -eq "50" ] || [ $lastTwoDigit -eq "75" ] || [ $lastTwoDigit -eq "00" ];then
+        return 1
+    else
+        return 0
+    fi
+}
+
+checkDivideByTwentyFive
 echo $?

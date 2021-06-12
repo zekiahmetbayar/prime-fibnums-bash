@@ -10,11 +10,10 @@ do
     let maxValue=$maxValue/10
 done
 
-lastElement="${integerArray[-1]}"
+secondPart="${integerArray[-1]}"
+secondPart=$(($secondPart * 4))
 unset integerArray[-1]
-
 arrayLength=${#integerArray[@]}
-multipliedLastElement=$((2*$lastElement))
 
 multiplyValue=1 
 loopStart=$(( $arrayLength - 1 ))
@@ -23,14 +22,14 @@ for ((i=$loopStart; i>=0; i--))
 do
     element="${integerArray[$i]}"
     add=$(($element*$multiplyValue))
-    sumOfInteger=$(( $sumOfInteger + $add ))
+    firstPart=$(( $firstPart + $add ))
     multiplyValue=$((10*$multiplyValue))
 done
 
-decreasedNumber=$(($sumOfInteger-$multipliedLastElement))
+addedNumber=$(($firstPart + $secondPart))
 
-if [ $((decreasedNumber%7)) -eq 0 ];then
+if [ $((addedNumber%13)) -eq 0 ];then
     echo 1
 else
-     echo 0
+    echo 0
 fi
