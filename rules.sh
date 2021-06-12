@@ -395,7 +395,6 @@ checkDivideByNineteen(){
     fi
 }
 
-
 checkDivideByTwentyThree(){
     local maxValue=$maxValue
     integerArray=()

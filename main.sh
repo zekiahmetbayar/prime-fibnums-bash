@@ -103,18 +103,43 @@ control(){
         echo $maxValue
         flag=0
     else
-        echo "$maxValue (PRIME)"
-        flag=0
+        # sample usage
+        primeControl $maxValue
+        if [[ $? -eq 0 ]]; then
+            echo "$maxValue"
+        else
+            echo "$maxValue (PRIME)"
+        fi
+
+    flag=0
     fi
+}
+
+primeControl(){
+    if [[ $1 -eq 2 ]] || [[ $1 -eq 3 ]]; then
+        return 1  # prime
+    fi
+    if [[ $(($1 % 2)) -eq 0 ]] || [[ $(($1 % 3)) -eq 0 ]]; then
+        return 0  # not a prime
+    fi
+    i=5; w=2
+    while [[ $((i * i)) -le $1 ]]; do
+        if [[ $(($1 % i)) -eq 0 ]]; then
+            return 0  # not a prime
+        fi
+        i=$((i + w))
+        w=$((6 - w))
+    done
+    return 1  # prime
 }
 
 if [ $range -gt 4100200300 ];then
     echo "Please enter a smaller number !"
 else
-    n1=0
+    n1=1
     n2=1
-    echo n1
-    echo n2
+    echo "$n2 (PRIME)"
+    echo "$n2 (PRIME)"
     n3=0
     while [[ $range -gt $n3 ]]
     do
