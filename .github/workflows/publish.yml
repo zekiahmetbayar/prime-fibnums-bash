@@ -1,0 +1,79 @@
+name: Publish
+
+on:
+  push:
+    # Publish `master` as Docker `latest` image.
+    branches: ["master"]
+
+jobs:
+  build:
+    # Ensure test job passes before pushing image.
+
+    name: Publish binaries
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Get current date
+        id: date
+        run: | 
+          echo "::set-output name=date::$(date +'%Y%m%d-%H%M%S')"
+          
+      - name: Build Debian Package
+        id: build_package
+        run: |
+          mkdir src/DEBIAN
+          touch src/DEBIAN/control
+          touch src/DEBIAN/md5sums
+          touch src/DEBIAN/postinst
+          
+          echo """Package: Prime Controller
+          Version: ${{steps.date.outputs.date}}
+          Installed-Size: echo $(du -s src/ | cut -f 1)
+          Maintainer: Zeki Ahmet Bayar <zekiahmetbayar1@gmail.com>
+          Date : $(date)
+          Architecture: amd64
+          Description: Prime Controller
+            It helps you to check whether the numbers in the Fibonacci sequence up to 4.100.200.300 are prime.
+          """ > src/DEBIAN/control
+          echo """
+          ./main.sh
+          """ > src/usr/local/bin/primecontroller
+        
+          find ./src -type f ! -regex '.*?DEBIAN.*' -exec md5sum {} \; > src/DEBIAN/md5sums
+          echo "chmod +x /usr/local/bin/primecontroller" > src/DEBIAN/postinst
+          chmod +x src/DEBIAN/postinst
+          
+          mv src  primecontroller-${{steps.date.outputs.date}}
+          dpkg-deb -Zgzip --build primecontroller-${{steps.date.outputs.date}}
+          
+          echo ::set-output name=path::$(pwd)/primecontroller-${{steps.date.outputs.date}}.deb
+          echo ::set-output name=filename::primecontroller-${{steps.date.outputs.date}}.deb
+          
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{steps.date.outputs.date}}
+          release_name: ${{steps.date.outputs.date}}
+          body: |
+            Changes in this Release
+            - Prime Controller v0.1
+          draft: false
+          prerelease: false
+
+      - name: Upload the Debian package to Release Assets
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ steps.build_package.outputs.path }}
+          asset_name: ${{ steps.build_package.outputs.filename }}
+          asset_content_type: application/vnd.debian.binary-package
