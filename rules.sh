@@ -20,6 +20,8 @@ checkDivideByThree(){
     if [ $maxValue -eq 3 ];then
         return 0
     else
+        temp=0
+        sum=0
         while [[ $maxValue -gt 0 ]]
         do
                 let temp=$maxValue%10
@@ -38,17 +40,21 @@ checkDivideByThree(){
 
 checkDivideByFour(){
     local maxValue=$maxValue
-
+    numberOfDigits=0
     numberOfDigits="${#maxValue}"
         
     if [ "$numberOfDigits" -ge "2" ]; then
         lastTwoDigit=${maxValue: -2}
-        if [ $lastTwoDigit -eq "00" ] || [ $((lastTwoDigit%4)) -eq 0 ];then
-            return 1
-         else
-            return 0
+        firstDigitOfLastTwoDigit="${lastTwoDigit:0:1}"
+        if [ $firstDigitOfLastTwoDigit -ne "0" ];then
+            if [ $lastTwoDigit -eq "00" ] || [ $((lastTwoDigit%4)) -eq 0 ];then
+                return 1
+            else
+                return 0
+            fi
         fi
     else
+        lastDigit=0
         lastDigit=${maxValue: -1}
         if [ $((lastDigit%4)) -eq 0 ] 
         then
@@ -64,6 +70,7 @@ checkDivideByFive(){
     if [ $maxValue -eq 5 ];then
         return 0
     else
+        lastDigit=0
         lastDigit=${maxValue: -1}
         if [ $lastDigit -eq 0 ]
         then
@@ -97,6 +104,7 @@ checkDivideBySix(){
 checkDivideBySeven(){
     local maxValue=$maxValue
     integerArray=()
+    temp=0
     while [[ $maxValue -gt 0 ]]
     do
         let temp=$maxValue%10
@@ -111,6 +119,7 @@ checkDivideBySeven(){
     multipliedLastElement=$((2 * $lastElement))
 
     multiplyValue=1 
+    sumOfInteger=0
     loopStart=$(( $arrayLength - 1 ))
 
     for ((i=$loopStart; i>=0; i--))
@@ -158,6 +167,7 @@ checkDivideByEight(){
 
 checkDivideByNine(){
     local maxValue=$maxValue
+    sum=0
     while [[ $maxValue -gt 0 ]]
     do
             let temp=$maxValue%10

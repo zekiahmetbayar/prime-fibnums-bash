@@ -1,35 +1,82 @@
 #!/bin/bash
+source ./rules.sh
 echo "Enter max value : (Max : 4.100.200.300)"
 read maxValue
+returnArray=()
+checkDivideByTwo
+    returnValue="$?+2"
+    returnArray=($returnValue "${returnArray[@]}")
 
-integerArray=()
-    while [[ $maxValue -gt 0 ]]
-    do
-        let temp=$maxValue%10
-        integerArray=($temp "${integerArray[@]}")
-        let maxValue=$maxValue/10
-    done
+    checkDivideByThree
+    returnValue="$?+3"
+    returnArray=($returnValue "${returnArray[@]}")
 
-    secondPart="${integerArray[-1]}"
-    secondPart=$(($secondPart * 5))
-    unset integerArray[-1]
-    arrayLength=${#integerArray[@]}
+    checkDivideByFour
+    returnValue="$?+4"
+    returnArray=($returnValue "${returnArray[@]}")
 
-    multiplyValue=1 
-    loopStart=$(( $arrayLength - 1 ))
+    checkDivideByFive
+    returnValue="$?+5"
+    returnArray=($returnValue "${returnArray[@]}")
 
-    for ((i=$loopStart; i>=0; i--))
-    do
-        element="${integerArray[$i]}"
-        add=$(($element*$multiplyValue))
-        firstPart=$(( $firstPart + $add ))
-        multiplyValue=$((10*$multiplyValue))
-    done
+    checkDivideBySix
+    returnValue="$?+6"
+    returnArray=($returnValue "${returnArray[@]}")
 
-    decreasedNumber=$(($firstPart - $secondPart))
+    checkDivideBySeven
+    returnValue="$?+7"
+    returnArray=($returnValue "${returnArray[@]}")
 
-    if [ $((decreasedNumber%17)) -eq 0 ];then
-        echo 1
-    else
-        echo 0
-    fi
+    checkDivideByEight
+    returnValue="$?+8"
+    returnArray=($returnValue "${returnArray[@]}")
+
+    checkDivideByNine
+    returnValue="$?+9"
+    returnArray=($returnValue "${returnArray[@]}")
+
+    checkDivideByTen
+    returnValue="$?+10"
+    returnArray=($returnValue "${returnArray[@]}")
+
+    checkDivideByEleven
+    returnValue="$?+11"
+    returnArray=($returnValue "${returnArray[@]}")
+
+    checkDivideByTwelve
+    returnValue="$?+12"
+    returnArray=($returnValue "${returnArray[@]}")
+
+    checkDivideByThirteen
+    returnValue="$?+13"
+    returnArray=($returnValue "${returnArray[@]}")
+
+    checkDivideByFifteen
+    returnValue="$?+15"
+    returnArray=($returnValue "${returnArray[@]}")
+
+    checkDivideBySeventeen
+    returnValue="$?+17"
+    returnArray=($returnValue "${returnArray[@]}")
+
+    checkDivideByEighteen
+    returnValue="$?+18"
+    returnArray=($returnValue "${returnArray[@]}")
+
+    checkDivideByNineteen
+    returnValue="$?+19"
+    returnArray=($returnValue "${returnArray[@]}")
+
+    checkDivideByTwentyThree
+    returnValue="$?+23"
+    returnArray=($returnValue "${returnArray[@]}")
+
+    checkDivideByTwentyFour
+    returnValue="$?+24"
+    returnArray=($returnValue "${returnArray[@]}")
+
+    checkDivideByTwentyFive
+    returnValue="$?+25"
+    returnArray=($returnValue "${returnArray[@]}")
+
+    echo ${returnArray[*]}
