@@ -1,6 +1,13 @@
 #!/bin/bash
 
 checkDivideByTwo(){
+    """
+    Gelen değerin ikiye bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    """
+    
     local maxValue=$maxValue    
     if [ $maxValue -eq 2 ];then
         return 0
@@ -16,6 +23,13 @@ checkDivideByTwo(){
 }
 
 checkDivideByThree(){
+    """
+    Gelen değerin üçe bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
     if [ $maxValue -eq 3 ];then
         return 0
@@ -39,6 +53,13 @@ checkDivideByThree(){
 }
 
 checkDivideByFour(){
+    """
+    Gelen değerin dörde bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
     numberOfDigits=0
     numberOfDigits="${#maxValue}"
@@ -66,6 +87,13 @@ checkDivideByFour(){
 }
 
 checkDivideByFive(){
+    """
+    Gelen değerin beşe bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
     if [ $maxValue -eq 5 ];then
         return 0
@@ -87,6 +115,13 @@ checkDivideByFive(){
 }
 
 checkDivideBySix(){
+    """
+    Gelen değerin altıya bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
     checkDivideByTwo
     local isDivisibleByTwo=$?
@@ -102,6 +137,13 @@ checkDivideBySix(){
 }
 
 checkDivideBySeven(){
+    """
+    Gelen değerin yediye bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
     integerArray=()
     temp=0
@@ -141,6 +183,13 @@ checkDivideBySeven(){
 }
 
 checkDivideByEight(){
+    """
+    Gelen değerin sekize bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
     if [ $maxValue -eq 8 ];then
         return 0
@@ -166,6 +215,13 @@ checkDivideByEight(){
 
 
 checkDivideByNine(){
+    """
+    Gelen değerin dokuza bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
     sum=0
     while [[ $maxValue -gt 0 ]]
@@ -184,6 +240,13 @@ checkDivideByNine(){
 }
 
 checkDivideByTen(){
+    """
+    Gelen değerin ona bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
     lastDigit=${maxValue: -1}
     if [ $lastDigit -eq 0 ] 
@@ -195,6 +258,13 @@ checkDivideByTen(){
 }
 
 checkDivideByEleven(){
+    """
+    Gelen değerin on bire bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
     digitsArray=()
     while [[ $maxValue -gt 0 ]]
@@ -237,6 +307,13 @@ checkDivideByEleven(){
 }
 
 checkDivideByTwelve(){
+    """
+    Gelen değerin on ikiye bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
     checkDivideByThree
     local isDivisibleByThree=$?
@@ -252,6 +329,13 @@ checkDivideByTwelve(){
 }
 
 checkDivideByThirteen(){
+    """
+    Gelen değerin on üçe bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
     if [ $maxValue -eq 13 ];then
         return 0
@@ -292,6 +376,13 @@ checkDivideByThirteen(){
 }
 
 checkDivideByFifteen(){
+    """
+    Gelen değerin on dörde bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
     checkDivideByThree
     local isDivisibleByThree=$?
@@ -307,6 +398,13 @@ checkDivideByFifteen(){
 }
 
 checkDivideBySeventeen(){
+    """
+    Gelen değerin on beşe bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
 
     integerArray=()
@@ -344,6 +442,13 @@ checkDivideBySeventeen(){
 }
 
 checkDivideByEighteen(){
+    """
+    Gelen değerin on sekize bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
     checkDivideByTwo
     local isDivisibleByTwo=$?
@@ -359,6 +464,13 @@ checkDivideByEighteen(){
 }
 
 checkDivideByNineteen(){
+    """
+    Gelen değerin on dokuza bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
     integerArray=()
     while [[ $maxValue -gt 0 ]]
@@ -396,6 +508,13 @@ checkDivideByNineteen(){
 }
 
 checkDivideByTwentyThree(){
+    """
+    Gelen değerin yirmi üçe bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
     integerArray=()
     while [[ $maxValue -gt 0 ]]
@@ -433,6 +552,13 @@ checkDivideByTwentyThree(){
 }
 
 checkDivideByTwentyFour(){
+    """
+    Gelen değerin yirmi dörde bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
     checkDivideByThree
     local isDivisibleByThree=$?
@@ -448,6 +574,13 @@ checkDivideByTwentyFour(){
 }
 
 checkDivideByTwentyFive(){
+    """
+    Gelen değerin yirmi beşe bölünüp bölünmediğini kontrol eder.
+
+    Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+    
+    """
+
     local maxValue=$maxValue
 
     numberOfDigits="${#maxValue}"

@@ -1,10 +1,19 @@
 #!/bin/bash
-source ./rules.sh
-source ./dot.sh
+source ./rules.sh # Kural fonksiyonlarının içe aktarılması
+source ./dot.sh # Nokta fonksiyonlarının içe aktarılması
 
 control(){
+    """
+
+    Bu fonksiyon global olarak tutulan maxValue değerini
+    rules dosyasındaki tüm kurallara tabi tutarak
+    asal sayı olup olmamasına göre ekrana basar.
+
+    """
     returnArray=()
     flag=0
+
+    # Sayının asal sayı kurallarına tabi tutulması
 
     checkDivideByTwo
     returnValue=$?
@@ -85,6 +94,7 @@ control(){
     returnArrayLength=0
     returnArrayLength=${#returnArray[@]}
 
+    # Sayının asal olup olmamasına göre ekrana basılması
 
     for ((i=0; i<$returnArrayLength; i++))
     do  
@@ -95,17 +105,17 @@ control(){
         fi
     done   
 
-    if [ $flag -eq 1 ];then
-        setDots $maxValue
-        echo $returnValueWithDots
+    if [ $flag -eq 1 ];then # Eğer sayı asal değilse
+        setDots $maxValue # Sonuca noktaları ekleme
+        echo $returnValueWithDots 
         flag=0
-    else
-        primeControl
+    else # Eğer sayı asal ise
+        primeControl # Kendi kurallarımızdan asal kontrolünü geçmesi ihtimali olan sayılara karşı gerçek asal sayı kontrolü
         if [[ $? -eq 0 ]]; then
-            setDots $maxValue
+            setDots $maxValue # Sonuca noktaları ekleme
             echo $returnValueWithDots
         else
-            setDots $maxValue
+            setDots $maxValue # Sonuca noktaları ekleme
             echo "$returnValueWithDots (PRIME)"
         fi
 
@@ -114,7 +124,13 @@ control(){
 }
 
 primeControl(){
+    """
 
+    Bu fonksiyon kendi kurallarımızdan asal kontrolünü 
+    geçmesi ihtimali olan sayılara karşı gerçek asal sayı 
+    kontrolü yapar.
+
+    """
     if [[ $maxValue -eq 2 ]] || [[ $maxValue -eq 3 ]]; then
         return 1 
     fi
