@@ -1,98 +1,136 @@
 #!/bin/bash
 source ./rules.sh
-echo "Enter max value : (Max : 4.100.200.300)"
-read maxValue
-returnArray=()
-checkDivideByTwo
-    returnValue="$?+2"
+source ./dot.sh
+
+control(){
+    returnArray=()
+    flag=0
+
+    checkDivideByTwo
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideByThree
-    returnValue="$?+3"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideByFour
-    returnValue="$?+4"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideByFive
-    returnValue="$?+5"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideBySix
-    returnValue="$?+6"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideBySeven
-    returnValue="$?+7"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideByEight
-    returnValue="$?+8"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideByNine
-    returnValue="$?+9"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideByTen
-    returnValue="$?+10"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideByEleven
-    returnValue="$?+11"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideByTwelve
-    returnValue="$?+12"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideByThirteen
-    returnValue="$?+13"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideByFifteen
-    returnValue="$?+15"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideBySeventeen
-    returnValue="$?+17"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideByEighteen
-    returnValue="$?+18"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideByNineteen
-    returnValue="$?+19"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideByTwentyThree
-    returnValue="$?+23"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideByTwentyFour
-    returnValue="$?+24"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
 
     checkDivideByTwentyFive
-    returnValue="$?+25"
+    returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
+    
+    returnArrayLength=0
+    returnArrayLength=${#returnArray[@]}
 
-    echo ${returnArray[*]}
 
-        if [[ $maxValue -eq 2 ]] || [[ $maxValue -eq 3 ]]; then
+    for ((i=0; i<$returnArrayLength; i++))
+    do  
+        element="${returnArray[$i]}"
+        if [ $element -eq 1 ];then
+            flag=1
+            break
+        fi
+    done   
+
+    if [ $flag -eq 1 ];then
+        setDots $maxValue
+        echo $returnValueWithDots
+        flag=0
+    else
+        primeControl
+        if [[ $? -eq 0 ]]; then
+            setDots $maxValue
+            echo $returnValueWithDots
+        else
+            setDots $maxValue
+            echo "$returnValueWithDots (PRIME)"
+        fi
+
+    flag=0
+    fi
+}
+
+primeControl(){
+
+    if [[ $maxValue -eq 2 ]] || [[ $maxValue -eq 3 ]]; then
         return 1 
     fi
     if [[ $(($maxValue % 2)) -eq 0 ]] || [[ $(($maxValue % 3)) -eq 0 ]]; then
         return 0 
     fi
+
     i=5; w=2
-    while [[ $((i * i)) -le $maxValue ]]; do
-        if [[ $(($maxValue % i)) -eq 0 ]]; then
+    while [[ $((i * i)) -le $maxValue ]]; 
+    do
+        if [[ $(($maxValue % i)) -eq 0 ]]; 
+        then
             return 0 
         fi
         i=$((i + w))
         w=$((6 - w))
     done
-    return 1  # prime
+    return 1
+}
