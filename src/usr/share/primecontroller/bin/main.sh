@@ -1,9 +1,23 @@
-#!/bin/bash
 """
-
 @Author -> Zeki Ahmet Bayar
 
+Bu betiklerin temel amacı Fibonacci sayı dizisinde yer alan
+sayıların asallık kontrolünü, bölünebilme kuralları ile yapmaktır.
+
+Bölünebilme kurallarının yetmediği durumlarda kontrol geleneksel asal
+sayı kontrolü algoritması ile yapılmaktadır.
+
+
+Klasörde bulunan diğer dosyalar şu işlere yaramaktadır : 
+
+dots.sh ->  Alınan ve ekrana basılan sayılara nokta ekler/siler.
+control.sh -> O anki dizi sayısını kurallara tabi tutar, ve sonucu ekrana basar.
+rules.sh -> Bölünebilme kurallarını içerir. 
+
 """
+
+#!/bin/bash
+
 source ./control.sh # Kontrol fonksiyonlarının içe aktarılması
 source ./dot.sh # Nokta fonksiyonlarının içe aktarılması
 
