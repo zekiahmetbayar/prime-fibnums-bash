@@ -35,23 +35,38 @@ range=$(( $maxValue - 2 ))
 if [ $range -gt 4100200300 ];then # Sayının limitlere uyup uymadığının kontrolü
     echo "Please enter a smaller number !"
 else
+    if [ $range -le 0 ];then
+        echo "Please enter a bigger number !"
+    else
+        
+        # Fibonacci sayı dizisinin oluşturulması ve
+        # her bir fibonacci sayı dizisine ait sayının
+        # kontrol işlemlerine sokulması 
 
-    # Fibonacci sayı dizisinin oluşturulması ve
-    # her bir fibonacci sayı dizisine ait sayının
-    # kontrol işlemlerine sokulması 
+        n1=1
+        n2=1
+        n0String="F(0)=$n1(PRIME)"
+        n1String="F(1)=$n2(PRIME)"
 
-    n1=1
-    n2=1
-    echo "F(0)=$n1 (PRIME)"
-    echo "F(1)=$n2 (PRIME)"
-    n3=0
-    while [[ $range -gt $n3 ]]
-    do
-        n3=$(( $n1 + $n2))
-        n1=$n2
-        n2=$n3
+        stringArray=($n0String "${stringArray[@]}")
+        stringArray=($n1String "${stringArray[@]}")
 
-        maxValue=$n3
-        control
-    done
+        n3=0
+        while [[ $range -gt $n3 ]]
+        do
+            n3=$(( $n1 + $n2))
+            n1=$n2
+            n2=$n3
+
+            maxValue=$n3
+            control
+        done
+
+        stringArrayLength=${#stringArray[@]}
+        for ((i=0; i<$stringArrayLength; i++))
+        do
+            stringArrayElement="${stringArray[$i]}"
+            echo $stringArrayElement
+        done
+    fi
 fi

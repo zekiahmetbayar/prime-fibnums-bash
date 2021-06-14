@@ -106,18 +106,21 @@ control(){
 
     if [ $flag -eq 1 ];then # Eğer sayı asal değilse
         setDots $maxValue # Sonuca noktaların eklenmesi
-        echo "F($fNumber)=$returnValueWithDots"
+        stringArrayElement="F($fNumber)=$returnValueWithDots"
+        stringArray=($stringArrayElement "${stringArray[@]}")
         fNumber=$(( fNumber + 1 ))
         flag=0
     else # Eğer sayı asal ise
         primeControl # Kendi kurallarımızdan asal kontrolünü geçmesi ihtimali olan sayılara karşı gerçek asal sayı kontrolü
         if [[ $? -eq 0 ]]; then
             setDots $maxValue # Sonuca noktaları ekleme
-            echo "F($fNumber)=$returnValueWithDots"
+            stringArrayElement="F($fNumber)=$returnValueWithDots"
+            stringArray=($stringArrayElement "${stringArray[@]}")
             fNumber=$(( fNumber + 1 ))
         else
             setDots $maxValue # Sonuca noktaları ekleme
-            echo "F($fNumber)=$returnValueWithDots (PRIME)"
+            stringArrayElement="F($fNumber)=$returnValueWithDots(PRIME)"
+            stringArray=($stringArrayElement "${stringArray[@]}")
             fNumber=$(( fNumber + 1 ))
         fi
 
