@@ -1,5 +1,6 @@
 : '
-Author -> Zeki Ahmet Bayar
+@Author -> Zeki Ahmet Bayar
+@Number -> 030117092
 
 Bu betiklerin temel amacı Fibonacci sayı dizisinde yer alan
 sayıların asallık kontrolünü, bölünebilme kuralları ile yapmaktır.
@@ -16,6 +17,7 @@ rules.sh -> Bölünebilme kurallarını içerir.
 '
 
 #!/bin/bash
+
 source ./control.sh # Kontrol fonksiyonlarının içe aktarılması
 source ./dot.sh # Nokta fonksiyonlarının içe aktarılması
 
@@ -27,6 +29,7 @@ maxValue=$returnValueWithoutDots # Alınan sayının noktalarının temizlenmesi
 
 export maxValue # Noktaları temizlenen sayının dışa aktarılması
 
+fNumber=2
 range=$(( $maxValue - 2 )) 
 
 if [ $range -gt 4100200300 ];then # Sayının limitlere uyup uymadığının kontrolü
@@ -39,8 +42,8 @@ else
 
     n1=1
     n2=1
-    echo "$n1 (PRIME)"
-    echo "$n2 (PRIME)"
+    echo "F(0)=$n1 (PRIME)"
+    echo "F(1)=$n2 (PRIME)"
     n3=0
     while [[ $range -gt $n3 ]]
     do

@@ -5,8 +5,7 @@ source ./dot.sh # Nokta fonksiyonlarının içe aktarılması
 control(){
     : '
 
-    Bu fonksiyon global olarak tutulan maxValue değerini
-    rules dosyasındaki tüm kurallara tabi tutarak
+    Bu fonksiyon global olarak tutulan maxValue değerini rules dosyasındaki tüm kurallara tabi tutarak
     asal sayı olup olmamasına göre ekrana basar.
 
     '
@@ -107,16 +106,19 @@ control(){
 
     if [ $flag -eq 1 ];then # Eğer sayı asal değilse
         setDots $maxValue # Sonuca noktaların eklenmesi
-        echo $returnValueWithDots 
+        echo "F($fNumber)=$returnValueWithDots"
+        fNumber=$(( fNumber + 1 ))
         flag=0
     else # Eğer sayı asal ise
         primeControl # Kendi kurallarımızdan asal kontrolünü geçmesi ihtimali olan sayılara karşı gerçek asal sayı kontrolü
         if [[ $? -eq 0 ]]; then
             setDots $maxValue # Sonuca noktaları ekleme
-            echo $returnValueWithDots
+            echo "F($fNumber)=$returnValueWithDots"
+            fNumber=$(( fNumber + 1 ))
         else
             setDots $maxValue # Sonuca noktaları ekleme
-            echo "$returnValueWithDots (PRIME)"
+            echo "F($fNumber)=$returnValueWithDots (PRIME)"
+            fNumber=$(( fNumber + 1 ))
         fi
 
     flag=0
