@@ -21,7 +21,7 @@ rules.sh -> Bölünebilme kurallarını içerir.
 source ./control.sh # Kontrol fonksiyonlarının içe aktarılması
 source ./dot.sh # Nokta fonksiyonlarının içe aktarılması
 
-echo "Enter max value : (Max : 4.100.200.300)"
+echo "Please enter a number : (Max : 4.100.200.300)"
 read maxValue # Kullanıcıdan değerin alınması
 
 getDots $maxValue 
@@ -36,7 +36,7 @@ if [ $range -gt 4100200300 ];then # Sayının limitlere uyup uymadığının kon
     echo "Please enter a smaller number !"
 else
     if [ $range -le 0 ];then
-        echo "Please enter a bigger number !"
+        echo "Please enter a bigger number !" # Sayının limitlere uyup uymadığının kontrolü
     else
         
         # Fibonacci sayı dizisinin oluşturulması ve
