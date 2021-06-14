@@ -29,7 +29,7 @@ getDots(){
 
     """
     
-    valueWithDots=$1
+    valueWithDots=$1 # Girdinin parametre olarak alınması
 
-    returnValueWithoutDots=`echo "${valueWithDots//./}"`
+    returnValueWithoutDots=`echo "${valueWithDots//./}"` # Girdiden noktaların çıkartılması
 }

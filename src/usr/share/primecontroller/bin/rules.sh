@@ -9,13 +9,13 @@ checkDivideByTwo(){
     """
     
     local maxValue=$maxValue    
-    if [ $maxValue -eq 2 ];then
+    if [ $maxValue -eq 2 ];then 
         return 0
     else
-        lastDigit=${maxValue: -1}
-        if [ $((lastDigit%2)) -eq 0 ] 
+        lastDigit=${maxValue: -1} # Sayının son elemanının alınması
+        if [ $((lastDigit%2)) -eq 0 ] # Eğer son eleman ikiye bölünüyorsa
         then
-            return 1
+            return 1 
         else
             return 0
         fi
@@ -31,19 +31,19 @@ checkDivideByThree(){
     """
 
     local maxValue=$maxValue
-    if [ $maxValue -eq 3 ];then
+    if [ $maxValue -eq 3 ];then # Eğer gelen sayı kendisi ise 0 döndür
         return 0
     else
         temp=0
         sum=0
-        while [[ $maxValue -gt 0 ]]
+        while [[ $maxValue -gt 0 ]] # Sayının basamaklar toplamını al
         do
                 let temp=$maxValue%10
                 let sum=$sum+$temp
                 let maxValue=$maxValue/10
         done
 
-        if [ $((sum%3)) -eq 0 ] 
+        if [ $((sum%3)) -eq 0 ] # Eğer basamaklar toplamı 3'e bölünüyorsa
         then
             return 1
         else
@@ -62,22 +62,22 @@ checkDivideByFour(){
 
     local maxValue=$maxValue
     numberOfDigits=0
-    numberOfDigits="${#maxValue}"
+    numberOfDigits="${#maxValue}" # Sayının kaç basamaklı olduğunu al
         
-    if [ "$numberOfDigits" -ge "2" ]; then
+    if [ "$numberOfDigits" -ge "2" ]; then # Eğer iki basamaktan büyükse
         lastTwoDigit=${maxValue: -2}
-        firstDigitOfLastTwoDigit="${lastTwoDigit:0:1}"
+        firstDigitOfLastTwoDigit="${lastTwoDigit:0:1}" # Kontrol için son iki basamağını al
         if [ $firstDigitOfLastTwoDigit -ne "0" ];then
-            if [ $lastTwoDigit -eq "00" ] || [ $((lastTwoDigit%4)) -eq 0 ];then
+            if [ $lastTwoDigit -eq "00" ] || [ $((lastTwoDigit%4)) -eq 0 ];then # Son iki basamak 00 ya da 4'e tam bölünüyorsa
                 return 1
             else
                 return 0
             fi
         fi
-    else
+    else # Sayı tek veya çift basamaklı ise
         lastDigit=0
-        lastDigit=${maxValue: -1}
-        if [ $((lastDigit%4)) -eq 0 ] 
+        lastDigit=${maxValue: -1} # Son basamağını al
+        if [ $((lastDigit%4)) -eq 0 ] # Son basamak 4'e tam bölünüyorsa
         then
             return 1
         else
@@ -95,16 +95,16 @@ checkDivideByFive(){
     """
 
     local maxValue=$maxValue
-    if [ $maxValue -eq 5 ];then
+    if [ $maxValue -eq 5 ];then # Eğer gelen sayı kendisi ise 0 döndür
         return 0
     else
         lastDigit=0
-        lastDigit=${maxValue: -1}
-        if [ $lastDigit -eq 0 ]
+        lastDigit=${maxValue: -1} # Sayının son basamağını al
+        if [ $lastDigit -eq 0 ] # Son basamak 0 ise
         then
             return 1
         else
-            if [ $lastDigit -eq 5 ]
+            if [ $lastDigit -eq 5 ] # Son basamak 5'e tam bölünüyor ise
             then
                 return 1
             else
@@ -123,13 +123,14 @@ checkDivideBySix(){
     """
 
     local maxValue=$maxValue
-    checkDivideByTwo
-    local isDivisibleByTwo=$?
+    checkDivideByTwo # İkiye bölünebilme fonksiyonunu çağır
+    local isDivisibleByTwo=$? # Return değerini yakala
 
-    checkDivideByThree
-    local isDivisibleByThree=$?
+    checkDivideByThree # Üçe bölünebilme fonksiyonunu çağır
+    local isDivisibleByThree=$? # Return değerini yakala
     
-    if [ $isDivisibleByTwo -eq 1 ] && [ $isDivisibleByThree -eq 1 ];then
+    # Eğer sayı hem iki hem de üçe tam bölünüyorsa
+    if [ $isDivisibleByTwo -eq 1 ] && [ $isDivisibleByThree -eq 1 ];then 
         return 1
     else
         return 0
@@ -147,24 +148,25 @@ checkDivideBySeven(){
     local maxValue=$maxValue
     integerArray=()
     temp=0
-    while [[ $maxValue -gt 0 ]]
+    while [[ $maxValue -gt 0 ]] # Sayıyı oluşturan rakamları bir diziye at
     do
         let temp=$maxValue%10
         integerArray=($temp "${integerArray[@]}")
         let maxValue=$maxValue/10
     done
 
-    lastElement="${integerArray[-1]}"
-    unset integerArray[-1]
+    lastElement="${integerArray[-1]}" # Sayının son basamağını al
+    unset integerArray[-1] # Son basamağı diziden çıkart
 
-    arrayLength=${#integerArray[@]}
-    multipliedLastElement=$((2 * $lastElement))
+    arrayLength=${#integerArray[@]} # Sayının kaç basamaklı olduğunu al
+    multipliedLastElement=$((2 * $lastElement)) # Son basamağı iki ile çarp
 
     multiplyValue=1 
     sumOfInteger=0
-    loopStart=$(( $arrayLength - 1 ))
+    loopStart=$(( $arrayLength - 1 )) 
 
-    for ((i=$loopStart; i>=0; i--))
+    # Son basamak çıktıktan sonra kalan sayının basamak değerleri toplamını bul
+    for ((i=$loopStart; i>=0; i--)) 
     do
         element="${integerArray[$i]}"
         add=$(($element*$multiplyValue))
@@ -172,9 +174,11 @@ checkDivideBySeven(){
         multiplyValue=$((10*$multiplyValue))
     done
 
+    # Son basamağın iki katını kalan sayıdan çıkart
     decreasedNumber=0
     decreasedNumber=$(($sumOfInteger-$multipliedLastElement))
 
+    # Çıkan sayı 7'ye tam bölünüyorsa
     if [ $((decreasedNumber%7)) -eq 0 ];then
         return 1
     else
@@ -191,19 +195,21 @@ checkDivideByEight(){
     """
 
     local maxValue=$maxValue
-    if [ $maxValue -eq 8 ];then
+    if [ $maxValue -eq 8 ];then # Eğer gelen sayı kendisi ise 0 döndür
         return 0
     else
-        numberOfDigits="${#maxValue}"
+        numberOfDigits="${#maxValue}" # Sayının kaç basamaklı olduğunu al
         
-        if [ "$numberOfDigits" -ge "3" ]; then
-            lastThreeDigit=${maxValue: -3}
+        if [ "$numberOfDigits" -ge "3" ]; then # Eğer sayı 3 basamaktan fazla ise
+            lastThreeDigit=${maxValue: -3} # Son 3 basamağı al
+
+            # Son üç basamak 000 ise veya 8'e tam bölünüyorsa
             if [ $lastThreeDigit -eq "000" ] || [ $((lastThreeDigit%8)) -eq 0 ];then
                 return 1
             else
                 return 0
             fi
-        else
+        else # Sayı 3 basamaklı veya 3 basamaktan küçükse
             if [ $((maxValue%8)) -eq 0 ];then
                 return 1
             else
@@ -224,13 +230,14 @@ checkDivideByNine(){
 
     local maxValue=$maxValue
     sum=0
-    while [[ $maxValue -gt 0 ]]
+    while [[ $maxValue -gt 0 ]] # Sayının basamakları toplamını al
     do
             let temp=$maxValue%10
             let sum=$sum+$temp
             let maxValue=$maxValue/10
     done
 
+    # Basamaklar toplamı 9'a tam bölünüyorsa
     if [ $((sum%9)) -eq 0 ] 
     then
         return 1
@@ -248,7 +255,9 @@ checkDivideByTen(){
     """
 
     local maxValue=$maxValue
-    lastDigit=${maxValue: -1}
+    lastDigit=${maxValue: -1} # Sayının son basamağını al
+
+    # Son basamak 0 ise
     if [ $lastDigit -eq 0 ] 
     then
         return 1
@@ -267,6 +276,8 @@ checkDivideByEleven(){
 
     local maxValue=$maxValue
     digitsArray=()
+
+    # Sayıyı oluşturan rakamları bir diziye at
     while [[ $maxValue -gt 0 ]]
     do
         let temp=$maxValue%10
@@ -274,31 +285,32 @@ checkDivideByEleven(){
         let maxValue=$maxValue/10
     done
 
-    digitsLength=${#digitsArray[@]}
+    digitsLength=${#digitsArray[@]} # Sayının kaç basamaklı olduğunu al
     sumOfAdd=0
     sumOfDec=0
 
+    # Sayıyı birler basamağından başlayarak ayır
     for ((i=0; i<$digitsLength; i++))
     do
         if [ $((i%2)) -eq 0 ];then
-            sumOfAdd=$(($sumOfAdd + "${digitsArray[$i]}"))
+            sumOfAdd=$(($sumOfAdd + "${digitsArray[$i]}")) # + işaretli olanları topla
         else
-            sumOfDec=$(($sumOfDec + "${digitsArray[$i]}"))
+            sumOfDec=$(($sumOfDec + "${digitsArray[$i]}")) # - işaretli olanları topla
         fi
     done
 
     decreasedNumber=0
-    decreasedNumber=$(($sumOfAdd-$sumOfDec))
+    decreasedNumber=$(($sumOfAdd-$sumOfDec)) # + ve - işaretli toplamları birbirinden çıkart
 
-    if [ $decreasedNumber -ge 0 ];then
-        if [ $((decreasedNumber%11)) -eq 0 ];then
+    if [ $decreasedNumber -ge 0 ];then # Çıkan sayı 11'den büyükse 
+        if [ $((decreasedNumber%11)) -eq 0 ];then # 11'e tam bölünüyorsa
             return 1
         else
             return 0 
         fi
     else
-        decreasedNumber=$(($decreasedNumber+11))
-        if [ $((decreasedNumber%11)) -eq 0 ];then
+        decreasedNumber=$(($decreasedNumber+11)) # Çıkan sayı 11'den küçükse 
+        if [ $((decreasedNumber%11)) -eq 0 ];then # Çıkan sayı 11'e tam bölünüyorsa
             return 1 
         else
             return 0 
@@ -315,12 +327,13 @@ checkDivideByTwelve(){
     """
 
     local maxValue=$maxValue
-    checkDivideByThree
-    local isDivisibleByThree=$?
+    checkDivideByThree # Üçe bölünebilme fonksiyonunu çağır
+    local isDivisibleByThree=$? # Return değerini yakala
 
-    checkDivideByFour
-    local isDivisibleByFour=$?
+    checkDivideByFour # Dörde bölünebilme fonksiyonunu çağır
+    local isDivisibleByFour=$? # Return değerini yakala
     
+    # Sayı her ikisine de tam bölünüyorsa
     if [ $isDivisibleByThree -eq 1 ] && [ $isDivisibleByFour -eq 1 ];then
         return 1
     else
@@ -337,10 +350,11 @@ checkDivideByThirteen(){
     """
 
     local maxValue=$maxValue
-    if [ $maxValue -eq 13 ];then
+    if [ $maxValue -eq 13 ];then # Gelen sayı kendisi ise 0 döndür
         return 0
     else
         integerArray=()
+        # Sayının elemanlarını diziye at
         while [[ $maxValue -gt 0 ]]
         do
             let temp=$maxValue%10
@@ -348,15 +362,16 @@ checkDivideByThirteen(){
             let maxValue=$maxValue/10
         done
 
-        secondPart="${integerArray[-1]}"
-        secondPart=$(($secondPart * 4))
-        unset integerArray[-1]
-        arrayLength=${#integerArray[@]}
+        secondPart="${integerArray[-1]}" # Sayının son elemanını al
+        secondPart=$(($secondPart * 4)) # Son elemanı 4 ile çarp
+        unset integerArray[-1] # Son elemanı diziden çıkart
+        arrayLength=${#integerArray[@]} # Kalan dizinin uzunluğunu al
 
         multiplyValue=1 
         firstPart=0
         loopStart=$(( $arrayLength - 1 ))
 
+        # Kalan sayının basamak değerlerini topla
         for ((i=$loopStart; i>=0; i--))
         do
             element="${integerArray[$i]}"
@@ -364,10 +379,11 @@ checkDivideByThirteen(){
             firstPart=$(( $firstPart + $add ))
             multiplyValue=$((10*$multiplyValue))
         done
-        addedNumber=0
-        addedNumber=$(($firstPart + $secondPart))
 
-        if [ $((addedNumber%13)) -eq 0 ];then
+        addedNumber=0
+        addedNumber=$(($firstPart + $secondPart)) # Kalan sayıdan son elemanın 4 katını çıkart
+
+        if [ $((addedNumber%13)) -eq 0 ];then # Sayı 13'e tam bölünüyorsa
             return 1
         else
             return 0
@@ -384,12 +400,13 @@ checkDivideByFifteen(){
     """
 
     local maxValue=$maxValue
-    checkDivideByThree
-    local isDivisibleByThree=$?
+    checkDivideByThree # Üçe bölünebilme fonksiyonunu çağır
+    local isDivisibleByThree=$? # Return değerini yakala
 
-    checkDivideByFive
-    local isDivisibleByFive=$?
+    checkDivideByFive # Beşe bölünebilme fonksiyonunu çağır
+    local isDivisibleByFive=$? # Return değerini yakala
     
+    # Sayı ikisine de tam bölünüyorsa
     if [ $isDivisibleByThree -eq 1 ] && [ $isDivisibleByFive -eq 1 ];then
         return 1
     else
@@ -408,22 +425,24 @@ checkDivideBySeventeen(){
     local maxValue=$maxValue
 
     integerArray=()
+    # Sayının elemanlarını bir diziye at
     while [[ $maxValue -gt 0 ]]
     do
         let temp=$maxValue%10
         integerArray=($temp "${integerArray[@]}")
         let maxValue=$maxValue/10
     done
-
-    secondPart="${integerArray[-1]}"
-    secondPart=$(($secondPart * 5))
-    unset integerArray[-1]
-    arrayLength=${#integerArray[@]}
+    
+    secondPart="${integerArray[-1]}" # Sayının son elemanını al
+    secondPart=$(($secondPart * 5)) # Son elemanı 5 ile çarp
+    unset integerArray[-1] # Diziden son elemanı çıkart
+    arrayLength=${#integerArray[@]} # Kalan sayının basamak sayısını al
 
     multiplyValue=1 
     firstPart=0
-    loopStart=$(( $arrayLength - 1 ))
+    loopStart=$(( $arrayLength - 1 )) 
 
+    # Kalan sayının basamak değerini al
     for ((i=$loopStart; i>=0; i--))
     do  
         element="${integerArray[$i]}"
@@ -433,8 +452,8 @@ checkDivideBySeventeen(){
     done
 
     decreasedNumber=0
-    decreasedNumber=$(($firstPart - $secondPart))
-    if [ $((decreasedNumber%17)) -eq 0 ];then
+    decreasedNumber=$(($firstPart - $secondPart)) # Kalan sayıdan 5 ile çarpılmış son elemanı çıkart
+    if [ $((decreasedNumber%17)) -eq 0 ];then # İşlem sonucu 17'ye bölünüyorsa
         return 1
     else
         return 0
@@ -450,12 +469,13 @@ checkDivideByEighteen(){
     """
 
     local maxValue=$maxValue
-    checkDivideByTwo
-    local isDivisibleByTwo=$?
+    checkDivideByTwo # İkiye bölünebilme fonksiyonunu çağır
+    local isDivisibleByTwo=$? # Return değerini yakala
 
-    checkDivideByNine
-    local isDivisibleByNine=$?
+    checkDivideByNine # Dokuza bölünebilme fonksiyonunu çağır
+    local isDivisibleByNine=$? # Return değerini yakala
     
+    # Sayı her ikisine de tam olarak bölünüyorsa
     if [ $isDivisibleByTwo -eq 1 ] && [ $isDivisibleByNine -eq 1 ];then
         return 1
     else
@@ -473,22 +493,24 @@ checkDivideByNineteen(){
 
     local maxValue=$maxValue
     integerArray=()
-    while [[ $maxValue -gt 0 ]]
+    
+    while [[ $maxValue -gt 0 ]] # Sayının uzunluğunu al
     do
         let temp=$maxValue%10
         integerArray=($temp "${integerArray[@]}")
         let maxValue=$maxValue/10
     done
 
-    secondPart="${integerArray[-1]}"
-    secondPart=$(($secondPart * 2))
-    unset integerArray[-1]
-    arrayLength=${#integerArray[@]}
+    secondPart="${integerArray[-1]}" # Sayının son elemanını al
+    secondPart=$(($secondPart * 2)) # Son elemanı iki ile çarp
+    unset integerArray[-1] # Son elemanı diziden çıkart
+    arrayLength=${#integerArray[@]} # Kalan dizinin uzunluğunu bul
 
     multiplyValue=1 
     firstPart=0
     loopStart=$(( $arrayLength - 1 ))
 
+    # Kalan sayının basamak değerini al
     for ((i=$loopStart; i>=0; i--))
     do
         element="${integerArray[$i]}"
@@ -498,9 +520,9 @@ checkDivideByNineteen(){
     done
 
     addedNumber=0
-    addedNumber=$(($firstPart + $secondPart))
+    addedNumber=$(($firstPart + $secondPart)) # İki parçayı topla
 
-    if [ $((addedNumber%19)) -eq 0 ];then
+    if [ $((addedNumber%19)) -eq 0 ];then # Sonuç 19'a tam bölünüyorsa
         return 1
     else
         return 0
@@ -517,22 +539,23 @@ checkDivideByTwentyThree(){
 
     local maxValue=$maxValue
     integerArray=()
-    while [[ $maxValue -gt 0 ]]
+    while [[ $maxValue -gt 0 ]] # Sayının uzunluğunu al
     do
         let temp=$maxValue%10
         integerArray=($temp "${integerArray[@]}")
         let maxValue=$maxValue/10
     done
 
-    secondPart="${integerArray[-1]}"
-    secondPart=$(($secondPart * 7))
-    unset integerArray[-1]
-    arrayLength=${#integerArray[@]}
+    secondPart="${integerArray[-1]}" # Sayının son elemanını al
+    secondPart=$(($secondPart * 7)) # Son elemanı 7 ile çarp
+    unset integerArray[-1] # Son elemanı diziden çıkart
+    arrayLength=${#integerArray[@]} # Dizinin uzunluğunu al
 
     multiplyValue=1 
     firstPart=0
     loopStart=$(( $arrayLength - 1 ))
 
+    # Kalan sayının basamak değerini al
     for ((i=$loopStart; i>=0; i--))
     do
         element="${integerArray[$i]}"
@@ -542,9 +565,9 @@ checkDivideByTwentyThree(){
     done
 
     addedNumber=0
-    addedNumber=$(($firstPart + $secondPart))
+    addedNumber=$(($firstPart + $secondPart)) # İki parçayı topla
 
-    if [ $((addedNumber%23)) -eq 0 ];then
+    if [ $((addedNumber%23)) -eq 0 ];then # Sonuç 23'e tam bölünüyorsa
         return 1
     else
         return 0
@@ -560,12 +583,13 @@ checkDivideByTwentyFour(){
     """
 
     local maxValue=$maxValue
-    checkDivideByThree
-    local isDivisibleByThree=$?
+    checkDivideByThree # Üçe bölünebilme fonksiyonunu çağır
+    local isDivisibleByThree=$? # Return değerini yakala
 
-    checkDivideByEight
-    local isDivisibleByEight=$?
+    checkDivideByEight # Sekize bölünebilme fonksiyonunu çağır
+    local isDivisibleByEight=$? # Return değerini yakala
     
+    # Sayı her ikisine de tam bölünüyorsa
     if [ $isDivisibleByThree -eq 1 ] && [ $isDivisibleByEight -eq 1 ];then
         return 1
     else
@@ -583,10 +607,13 @@ checkDivideByTwentyFive(){
 
     local maxValue=$maxValue
 
-    numberOfDigits="${#maxValue}"
-    
+    numberOfDigits="${#maxValue}" # Sayının uzunluğunu al
+
+    # Sayı 2 basamaklı veya 2 basamaktan büyükse 
     if [ "$numberOfDigits" -ge "2" ]; then
-        lastTwoDigit=${maxValue: -2}
+        lastTwoDigit=${maxValue: -2} # Sayının son iki basamağını al
+        
+        # Son iki basamağı 25 veya 50 veya 75 veya 00'a eşitse 
         if [ $lastTwoDigit -eq "25" ] || [ $lastTwoDigit -eq "50" ] || [ $lastTwoDigit -eq "75" ] || [ $lastTwoDigit -eq "00" ];then
             return 1
         else

@@ -15,9 +15,9 @@ control(){
 
     # Sayının asal sayı kurallarına tabi tutulması
 
-    checkDivideByTwo
-    returnValue=$?
-    returnArray=($returnValue "${returnArray[@]}")
+    checkDivideByTwo # İkiye bölünebilme kuralını uygulayan fonksiyonun çağırılması
+    returnValue=$? # Fonksiyondan return edilen değerin yakalanması
+    returnArray=($returnValue "${returnArray[@]}") # Yakalanan değerin kontrol dizisine atılması
 
     checkDivideByThree
     returnValue=$?
@@ -91,8 +91,8 @@ control(){
     returnValue=$?
     returnArray=($returnValue "${returnArray[@]}")
     
-    returnArrayLength=0
-    returnArrayLength=${#returnArray[@]}
+    returnArrayLength=0 # Kontrol dizisinin set edilmesi
+    returnArrayLength=${#returnArray[@]} # Kontrol dizisinin uzunluğunun alınması
 
     # Sayının asal olup olmamasına göre ekrana basılması
 
@@ -106,7 +106,7 @@ control(){
     done   
 
     if [ $flag -eq 1 ];then # Eğer sayı asal değilse
-        setDots $maxValue # Sonuca noktaları ekleme
+        setDots $maxValue # Sonuca noktaların eklenmesi
         echo $returnValueWithDots 
         flag=0
     else # Eğer sayı asal ise
@@ -138,15 +138,17 @@ primeControl(){
         return 0 
     fi
 
-    i=5; w=2
-    while [[ $((i * i)) -le $maxValue ]]; 
+    a=5 
+    b=2
+
+    while [[ $((a * a)) -le $maxValue ]]; 
     do
-        if [[ $(($maxValue % i)) -eq 0 ]]; 
+        if [[ $(($maxValue % a)) -eq 0 ]]; 
         then
             return 0 
         fi
-        i=$((i + w))
-        w=$((6 - w))
+        a=$((a + b))
+        b=$((6 - b))
     done
     return 1
 }
