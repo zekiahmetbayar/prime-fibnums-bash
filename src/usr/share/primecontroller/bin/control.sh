@@ -3,13 +3,13 @@ source ./rules.sh # Kural fonksiyonlarının içe aktarılması
 source ./dot.sh # Nokta fonksiyonlarının içe aktarılması
 
 control(){
-    """
+    : '
 
     Bu fonksiyon global olarak tutulan maxValue değerini
     rules dosyasındaki tüm kurallara tabi tutarak
     asal sayı olup olmamasına göre ekrana basar.
 
-    """
+    '
     returnArray=()
     flag=0
 
@@ -124,13 +124,13 @@ control(){
 }
 
 primeControl(){
-    """
+    : '
 
     Bu fonksiyon kendi kurallarımızdan asal kontrolünü 
     geçmesi ihtimali olan sayılara karşı gerçek asal sayı 
     kontrolü yapar.
 
-    """
+    '
     if [[ $maxValue -eq 2 ]] || [[ $maxValue -eq 3 ]]; then
         return 1 
     fi

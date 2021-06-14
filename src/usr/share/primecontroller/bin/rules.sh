@@ -1,12 +1,14 @@
 #!/bin/bash
 
 checkDivideByTwo(){
-    """
+    : '
     Gelen değerin ikiye bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
 
-    """
+    Kural tanımı : Son rakamı çift sayı ise bölünür. Bir tam sayı 2 ile bölünmezse kalan her zaman 1 olur.
+
+    '
     
     local maxValue=$maxValue    
     if [ $maxValue -eq 2 ];then 
@@ -23,12 +25,14 @@ checkDivideByTwo(){
 }
 
 checkDivideByThree(){
-    """
+    : '
     Gelen değerin üçe bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Rakamların değerleri toplamı 3 veya üçün katlarıysa bölünür.
     
-    """
+    '
 
     local maxValue=$maxValue
     if [ $maxValue -eq 3 ];then # Eğer gelen sayı kendisi ise 0 döndür
@@ -53,12 +57,14 @@ checkDivideByThree(){
 }
 
 checkDivideByFour(){
-    """
+    : '
     Gelen değerin dörde bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Bir sayının birler ve onlar basamağı 00 ya da 4ün katı ise sayı 4 ile bölünür.
     
-    """
+    '
 
     local maxValue=$maxValue
     numberOfDigits=0
@@ -87,12 +93,14 @@ checkDivideByFour(){
 }
 
 checkDivideByFive(){
-    """
+    : '
     Gelen değerin beşe bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Son rakamı 0 veya 5 ise 5e bölünür.
     
-    """
+    '
 
     local maxValue=$maxValue
     if [ $maxValue -eq 5 ];then # Eğer gelen sayı kendisi ise 0 döndür
@@ -115,12 +123,14 @@ checkDivideByFive(){
 }
 
 checkDivideBySix(){
-    """
+    : '
     Gelen değerin altıya bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Sayı hem 2'ye hem 3'e kalansız bölünebiliyorsa 6ya da bölünür.
     
-    """
+    '
 
     local maxValue=$maxValue
     checkDivideByTwo # İkiye bölünebilme fonksiyonunu çağır
@@ -138,12 +148,15 @@ checkDivideBySix(){
 }
 
 checkDivideBySeven(){
-    """
+    : '
     Gelen değerin yediye bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Sayının son rakamı 2 ile çarpılır ve elde edilen sayı ilk sayının son rakamı haricindeki 
+    rakamların oluşturduğu sayıdan çıkarılır. Çıkan sayı 7nin katı veya 0 ise bu sayı da 7ye tam bölünüyor demektir.
     
-    """
+    '
 
     local maxValue=$maxValue
     integerArray=()
@@ -187,12 +200,14 @@ checkDivideBySeven(){
 }
 
 checkDivideByEight(){
-    """
+    : '
     Gelen değerin sekize bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Son üç basamağının oluşturduğu sayı 000 ya da 8 in katı ise bölünür.
     
-    """
+    '
 
     local maxValue=$maxValue
     if [ $maxValue -eq 8 ];then # Eğer gelen sayı kendisi ise 0 döndür
@@ -221,12 +236,14 @@ checkDivideByEight(){
 
 
 checkDivideByNine(){
-    """
+    : '
     Gelen değerin dokuza bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Rakamların sayı değerleri toplamı 9 veya dokuzun katlarıysa bölünür. 
     
-    """
+    '
 
     local maxValue=$maxValue
     sum=0
@@ -247,12 +264,14 @@ checkDivideByNine(){
 }
 
 checkDivideByTen(){
-    """
+    : '
     Gelen değerin ona bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Son rakamı 0 ise bölünür.
     
-    """
+    '
 
     local maxValue=$maxValue
     lastDigit=${maxValue: -1} # Sayının son basamağını al
@@ -267,12 +286,17 @@ checkDivideByTen(){
 }
 
 checkDivideByEleven(){
-    """
+    : '
     Gelen değerin on bire bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Bir sayının 11 ile tam olarak bölünebilmesi için, sayının rakamlarının altına birler basamağından
+    başlayarak sırasıyla +, -, +, -, ... işaretleri yazılır, artılı gruplar kendi arasında ve eksili gruplar kendi
+    arasında toplanır, farkı alınır. Genel toplamın 11 e bölümünde kalan 0 ise sayı 11e tam bölünür. Sonuç
+    negatif çıkarsa sonuca +11 eklenir.
     
-    """
+    '
 
     local maxValue=$maxValue
     digitsArray=()
@@ -319,12 +343,14 @@ checkDivideByEleven(){
 }
 
 checkDivideByTwelve(){
-    """
+    : '
     Gelen değerin on ikiye bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Bir sayının 12ye tam bölünmesi için, 3 ve 4e tam olarak bölünmesi gerekir.
     
-    """
+    '
 
     local maxValue=$maxValue
     checkDivideByThree # Üçe bölünebilme fonksiyonunu çağır
@@ -342,12 +368,16 @@ checkDivideByTwelve(){
 }
 
 checkDivideByThirteen(){
-    """
+    : '
     Gelen değerin on üçe bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Bir sayının 13e tam bölünüp bölünmediğini anlamak için o sayıyı 
+    10a+b şeklinde yazmamız gerekmektedir. Sonrasında bulduğumuz a ve b değerlerini a+4b şeklinde yazdığımızda 
+    çıkan sonuç 13 ile tam bölünebiliyorsa ilk sayı da 13e tam bölünebiliyor demektir.
     
-    """
+    '
 
     local maxValue=$maxValue
     if [ $maxValue -eq 13 ];then # Gelen sayı kendisi ise 0 döndür
@@ -392,12 +422,14 @@ checkDivideByThirteen(){
 }
 
 checkDivideByFifteen(){
-    """
+    : '
     Gelen değerin on dörde bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
-    
-    """
+
+    Kural tanımı : Bir sayının 15 ile bölünebilmesi için, bu sayının hem 3 ile hem de 5 ile tam olarak bölünmesi gerekir.
+
+    '
 
     local maxValue=$maxValue
     checkDivideByThree # Üçe bölünebilme fonksiyonunu çağır
@@ -415,12 +447,14 @@ checkDivideByFifteen(){
 }
 
 checkDivideBySeventeen(){
-    """
+    : '
     Gelen değerin on beşe bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Sayıyı X=10a+b şeklinde yazdığımızda a-5b sayısı 17ye kalansız bölünmesiyle oluşur.
     
-    """
+    '
 
     local maxValue=$maxValue
 
@@ -461,12 +495,14 @@ checkDivideBySeventeen(){
 }
 
 checkDivideByEighteen(){
-    """
+    : '
     Gelen değerin on sekize bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Bir sayının 18 ile bölünebilmesi için, bu sayının hem 2 ile hem de 9 ile tam olarak bölünmesi gerekir.
     
-    """
+    '
 
     local maxValue=$maxValue
     checkDivideByTwo # İkiye bölünebilme fonksiyonunu çağır
@@ -484,12 +520,14 @@ checkDivideByEighteen(){
 }
 
 checkDivideByNineteen(){
-    """
+    : '
     Gelen değerin on dokuza bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Sayıyı X=10a+b şeklinde yazdığımızda a+2b sayısı 19a kalansız bölünürse bölünebilir.
     
-    """
+    '
 
     local maxValue=$maxValue
     integerArray=()
@@ -530,12 +568,14 @@ checkDivideByNineteen(){
 }
 
 checkDivideByTwentyThree(){
-    """
+    : '
     Gelen değerin yirmi üçe bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Sayıyı X=10a+b şeklinde yazdığımızda a+7b sayısı 23e kalansız bölünürse bölünebilir.
     
-    """
+    '
 
     local maxValue=$maxValue
     integerArray=()
@@ -575,12 +615,14 @@ checkDivideByTwentyThree(){
 }
 
 checkDivideByTwentyFour(){
-    """
+    : '
     Gelen değerin yirmi dörde bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Bir sayının 24 ile bölünebilmesi için, bu sayının hem 3 ile hem de 8 ile tam olarak bölünmesi gerekir.
     
-    """
+    '
 
     local maxValue=$maxValue
     checkDivideByThree # Üçe bölünebilme fonksiyonunu çağır
@@ -598,12 +640,14 @@ checkDivideByTwentyFour(){
 }
 
 checkDivideByTwentyFive(){
-    """
+    : '
     Gelen değerin yirmi beşe bölünüp bölünmediğini kontrol eder.
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
+
+    Kural tanımı : Son iki rakamı 25, 50, 75, veya 00 olmalıdır.
     
-    """
+    '
 
     local maxValue=$maxValue
 
@@ -612,7 +656,7 @@ checkDivideByTwentyFive(){
     # Sayı 2 basamaklı veya 2 basamaktan büyükse 
     if [ "$numberOfDigits" -ge "2" ]; then
         lastTwoDigit=${maxValue: -2} # Sayının son iki basamağını al
-        
+
         # Son iki basamağı 25 veya 50 veya 75 veya 00'a eşitse 
         if [ $lastTwoDigit -eq "25" ] || [ $lastTwoDigit -eq "50" ] || [ $lastTwoDigit -eq "75" ] || [ $lastTwoDigit -eq "00" ];then
             return 1

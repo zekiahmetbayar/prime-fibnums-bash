@@ -1,13 +1,13 @@
 #!/bin/bash
 
 setDots(){
-    """
+    : '
 
     Bu fonksiyon elde edilen sonuca noktaları ekler.
 
     100000 -> 100.000
     
-    """
+    '
     
     value=$1 # Sonucun parametre olarak alınması
     digitNumberOfValue="${#value}" # Sonucun masamak sayısının alınması
@@ -21,13 +21,13 @@ setDots(){
 }
 
 getDots(){
-    """
+    : '
 
     Bu fonksiyon girilen sayıdan noktaları çıkarır.
 
     100.000 -> 100000
 
-    """
+    '
     
     valueWithDots=$1 # Girdinin parametre olarak alınması
 
