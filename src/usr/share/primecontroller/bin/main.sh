@@ -18,8 +18,8 @@ rules.sh -> Bölünebilme kurallarını içerir.
 
 #!/bin/bash
 
-source ./control.sh # Kontrol fonksiyonlarının içe aktarılması
-source ./dot.sh # Nokta fonksiyonlarının içe aktarılması
+source /usr/share/primecontroller/bin/control.sh # Kontrol fonksiyonlarının içe aktarılması
+source /usr/share/primecontroller/bin/dot.sh # Nokta fonksiyonlarının içe aktarılması
 
 echo "Please enter a number : (Max : 4.100.200.300)"
 read maxValue # Kullanıcıdan değerin alınması

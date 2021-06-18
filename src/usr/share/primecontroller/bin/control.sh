@@ -5,8 +5,8 @@ fonksiyonları içerir.
 
 '
 #!/bin/bash
-source ./rules.sh # Kural fonksiyonlarının içe aktarılması
-source ./dot.sh # Nokta fonksiyonlarının içe aktarılması
+source /usr/share/primecontroller/bin/rules.sh # Kural fonksiyonlarının içe aktarılması
+source /usr/share/primecontroller/bin/dot.sh # Nokta fonksiyonlarının içe aktarılması
 
 control(){
     : '
