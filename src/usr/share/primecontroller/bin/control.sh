@@ -1,3 +1,9 @@
+: '
+
+Bu dosya bölünebilme kurallarını sayılara uygulayan 
+fonksiyonları içerir.
+
+'
 #!/bin/bash
 source ./rules.sh # Kural fonksiyonlarının içe aktarılması
 source ./dot.sh # Nokta fonksiyonlarının içe aktarılması
@@ -131,29 +137,35 @@ control(){
 primeControl(){
     : '
 
-    Bu fonksiyon kendi kurallarımızdan asal kontrolünü 
-    geçmesi ihtimali olan sayılara karşı gerçek asal sayı 
-    kontrolü yapar.
+    Bu fonksiyon kendi kurallarımızdan asal kontrolünü geçmesi ihtimali olan sayılara 
+    karşı gerçek asal sayı kontrolü yapar.
+
+    Bu noktada programın gereğinden fazla uzun çalışması sorunundan ötürü optimizasyon
+    çözümüne ihtiyaç duyulmuştur.
+
+    Bu sorunun çözümüne istinaden 6k+-1 optimizasyonu kullanılmıştır.
+
+    Kaynak : https://en.wikipedia.org/wiki/Primality_test
 
     '
-    if [[ $maxValue -eq 2 ]] || [[ $maxValue -eq 3 ]]; then
+    if [ $maxValue -eq 2 ] || [ $maxValue -eq 3 ]; then
         return 1 
     fi
-    if [[ $(($maxValue % 2)) -eq 0 ]] || [[ $(($maxValue % 3)) -eq 0 ]]; then
+    if [ $(($maxValue % 2)) -eq 0 ] || [ $(($maxValue % 3)) -eq 0 ]; then
         return 0 
     fi
 
-    a=5 
-    b=2
+    m=5 
+    n=2
 
-    while [[ $((a * a)) -le $maxValue ]]; 
+    while [ $((m * m)) -le $maxValue ]; 
     do
-        if [[ $(($maxValue % a)) -eq 0 ]]; 
+        if [ $(($maxValue % m)) -eq 0 ]; 
         then
             return 0 
         fi
-        a=$((a + b))
-        b=$((6 - b))
+        m=$((m + n))
+        n=$((6 - n))
     done
     return 1
 }

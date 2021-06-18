@@ -1,3 +1,9 @@
+: '
+
+Bu dosyadaki fonksiyonlar giriş/çıkış sayılarına nokta ekler/siler.
+
+'
+
 #!/bin/bash
 
 setDots(){
@@ -18,7 +24,7 @@ setDots(){
     else
         returnValueWithDots=$value # Değilse aynen döndürülmesi
     fi
-}
+}                       
 
 getDots(){
     : '

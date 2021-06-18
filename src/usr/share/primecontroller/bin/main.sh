@@ -34,9 +34,13 @@ range=$(( $maxValue - 2 ))
 
 if [ $range -gt 4100200300 ];then # Sayının limitlere uyup uymadığının kontrolü
     echo "Please enter a smaller number !"
+    echo "-------------------------------"
+    ./main.sh
 else
     if [ $range -le 0 ];then
         echo "Please enter a bigger number !" # Sayının limitlere uyup uymadığının kontrolü
+        echo "-------------------------------"
+        ./main.sh
     else
         
         # Fibonacci sayı dizisinin oluşturulması ve

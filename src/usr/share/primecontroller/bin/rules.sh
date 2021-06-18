@@ -1,3 +1,30 @@
+: '
+
+Bu dosya yalnızca bölünebilme kurallarını içerir.
+
+Kurallar listesi :
+
+    * 2ye bölünebilme kuralı
+    * 3e bölünebilme kuralı
+    * 4e bölünebilme kuralı
+    * 5e bölünebilme kuralı
+    * 6ya bölünebilme kuralı
+    * 7ye bölünebilme kuralı
+    * 8e bölünebilme kuralı
+    * 9a bölünebilme kuralı
+    * 10a bölünebilme kuralı
+    * 11e bölünebilme kuralı
+    * 12ye bölünebilme kuralı
+    * 13e bölünebilme kuralı
+    * 15e bölünebilme kuralı
+    * 17e bölünebilme kuralı
+    * 18e bölünebilme kuralı
+    * 19a bölünebilme kuralı
+    * 23e bölünebilme kuralı
+    * 24e bölünebilme kuralı
+    * 25e bölünebilme kuralı
+
+'
 #!/bin/bash
 
 checkDivideByTwo(){
@@ -128,7 +155,7 @@ checkDivideBySix(){
 
     Bölünüyorsa 1, bölünmüyorsa 0 döndürür.
 
-    Kural tanımı : Sayı hem 2'ye hem 3'e kalansız bölünebiliyorsa 6ya da bölünür.
+    Kural tanımı : Sayı hem 2ye hem 3e kalansız bölünebiliyorsa 6ya da bölünür.
     
     '
 
