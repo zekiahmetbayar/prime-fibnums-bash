@@ -77,11 +77,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{steps.date.outputs.date}}
-          release_name: ${{steps.date.outputs.date}}
+          tag_name: primeController
+          release_name: v02
           body: |
             Changes in this Release
-            - Prime Controller v0.1
+            - Prime Controller v0.2
           draft: false
           prerelease: false
 
