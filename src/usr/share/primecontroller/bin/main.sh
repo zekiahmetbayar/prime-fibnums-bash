@@ -1,6 +1,5 @@
 : '
 @Author -> Zeki Ahmet Bayar
-@Number -> 030117092
 
 Bu betiklerin temel amacı Fibonacci sayı dizisinde yer alan
 sayıların asallık kontrolünü, bölünebilme kuralları ile yapmaktır.
