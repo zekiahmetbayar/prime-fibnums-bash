@@ -8,6 +8,6 @@ It's all written as bash script.
 
 ## Examples
 
-![https://github.com/zekiahmetbayar/primeFibonacciNumbers/blob/main/img/prime1.PNG]
+![](https://github.com/zekiahmetbayar/primeFibonacciNumbers/blob/main/img/prime1.PNG)
 
-![https://github.com/zekiahmetbayar/primeFibonacciNumbers/blob/main/img/prime2.PNG]
+![](https://github.com/zekiahmetbayar/primeFibonacciNumbers/blob/main/img/prime2.PNG)
